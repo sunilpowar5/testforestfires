@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px; /* Add some padding to the body */
+            box-sizing: border-box; /* Make sure padding is included in the width/height calculations */
+        }
+        .login {
+            background-color: #fff;
+            padding: 20px; /* Reduce padding */
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            max-width: 350px; /* Reduce the max width */
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+        .login:hover {
+            transform: translateY(-10px);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 22px; /* Reduce font size */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px; /* Reduce padding */
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px; /* Reduce font size */
+            transition: border-color 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px; /* Reduce padding */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px; /* Reduce font size */
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        h2 {
+            text-align: center;
+            color: #28a745;
+            margin-top: 20px;
+            font-size: 18px; /* Reduce font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>FWI Prediction</h1>
+        
+        <!-- Main input for receiving query for ML -->
+        <form action="{{url_for('predict_datapoint') }}" method="post">
+            <input type="text" name="Temperature" placeholder="Temperature" required="required" /><br>
+            <input type="text" name="RH" placeholder="RH" required="required" /><br>
+            <input type="text" name="WS" placeholder="WS" required="required" /><br>
+            <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
+            <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br>
+            <input type="text" name="DDC" placeholder="DDC" required="required" /><br>
+            <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
+            <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
+            <input type="text" name="Region" placeholder="Region" required="required" /><br>
+            <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+
+        <h2>
+            The FWI prediction is: {{results}}
+        </h2>
+    </div>
+</body>
+</html>
